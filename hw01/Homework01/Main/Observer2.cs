@@ -8,5 +8,10 @@ namespace Main
         {
             Console.WriteLine("Observer2 реагирует на изменения ...");
         }
+
+        public void ApplyUpdateModel(string info)
+        {
+            Console.WriteLine($"Observer2: {info}");
+        }
     }
 }

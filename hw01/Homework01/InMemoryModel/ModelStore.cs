@@ -1,6 +1,5 @@
 ﻿using ModelElements;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace InMemoryModel
 {
@@ -15,13 +14,12 @@ namespace InMemoryModel
 
         public ModelStore()
         {
-            Models.CollectionChanged += ModelChanged;
-            Scenes.CollectionChanged += ModelChanged;
-            Flashes.CollectionChanged += ModelChanged;
-            Cameras.CollectionChanged += ModelChanged;
+            Models.CollectionChanged += (_, _) => NotifyChange(this, "изменение в коллекции моделей");
+            Scenes.CollectionChanged += (_, _) => NotifyChange(this, "изменение в коллекции сцен");
+            Flashes.CollectionChanged += (_, _) => NotifyChange(this, "изменение в коллекции осветителей");
+            Cameras.CollectionChanged += (_, _) => NotifyChange(this, "изменение в коллекции камер");
         }
 
-        private void ModelChanged(object? sender, NotifyCollectionChangedEventArgs e) => NotifyChange(this);
 
         public Scene? GetScena(int Id)
         {
@@ -35,6 +33,14 @@ namespace InMemoryModel
             foreach (var item in _changeObservers)
             {
                 item.ApplyUpdateModel();
+            }
+        }
+
+        public void NotifyChange(IModelChanger sender, string info)
+        {
+            foreach (var item in _changeObservers)
+            {
+                item.ApplyUpdateModel(info);
             }
         }
     }
