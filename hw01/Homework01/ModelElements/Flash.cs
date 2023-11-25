@@ -5,9 +5,25 @@ namespace ModelElements
 {
     public class Flash
     {
-        public Point3D Location { get; set; }
-        public Angle3D Angle { get; set; }
-        public Color Color { get; set; }
+
+        public Point3D Location { get; }
+        public Angle3D Angle { get; }
+        public Color Color { get; }
+        public float Power { get; set; }
+
+        public void Rotate(Angle3D angle)
+        {
+
+        }
+
+        public void Move()
+        {
+
+        }
+
+
+
+
 
     }
 }
