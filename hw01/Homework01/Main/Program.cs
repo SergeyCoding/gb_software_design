@@ -1,4 +1,6 @@
-﻿namespace Main
+﻿using InMemoryModel;
+
+namespace Main
 {
     internal class Program
     {
@@ -6,6 +8,11 @@
         {
             Console.WriteLine("Software Design");
             Console.WriteLine("Homework 01");
+
+            var modelStore = new ModelStore();
+
+            modelStore.AddObserver(new Observer1());
+            modelStore.AddObserver(new Observer2());
         }
     }
 }

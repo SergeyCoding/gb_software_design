@@ -1,6 +1,6 @@
 ﻿namespace InMemoryModel
 {
-    interface IModelChanger
+    public interface IModelChanger
     {
         void NotifyChange(IModelChanger sender);
     }
