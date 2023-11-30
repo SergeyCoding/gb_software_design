@@ -26,10 +26,7 @@ public class SportCar extends Car {
 
     }
 
-    @Override
-    public void maintenance() {
 
-    }
 
     @Override
     public boolean gearShifting() {

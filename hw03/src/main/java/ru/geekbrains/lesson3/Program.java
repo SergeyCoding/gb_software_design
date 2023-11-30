@@ -21,19 +21,36 @@ public class Program {
 
 
         var car2= new UrbanCar("BMW","X5",Color.GRAY );
-        car2.setFuelType(FuelType.Diesel);
+        car2.wheelsCount=4;
+        car2.carType= CarType.Hatchback;
+        car2.fuelType=FuelType.Diesel;
+        car2.gearboxType= GearboxType.AT;
+        car2.engineCapacity=2500;
 
         var car3= new UrbanCar("Toyota", "Corolla",Color.RED);
-        car3.setFuelType(FuelType.Gasoline);
+        car3.wheelsCount=4;
+        car3.carType= CarType.Sedan;
+        car3.fuelType=FuelType.Gasoline;
+        car3.gearboxType= GearboxType.MT;
+        car3.engineCapacity=1500;
 
         // Автомойка
-        var carWash=new CarWash();
+        var carWash=new CarWash("Автомойка");
 
         // Сервисная станция
-        var serviceStation=new ServiceStation();
+        var serviceStation=new ServiceStation("Сервисная станция");
 
         carWash.wipMirrors(sportCar);
-        carWash.wipWindshield(sportCar);
-        carWash.wipHeadlights(sportCar);
+        carWash.wipWindshield(car2);
+        carWash.wipHeadlights(car3);
+
+        serviceStation.wipMirrors(sportCar);
+        serviceStation.fuel(sportCar);
+
+        serviceStation.wipWindshield(car2);
+        serviceStation.fuel(car2);
+
+        serviceStation.wipHeadlights(car3);
+        serviceStation.fuel(car3);
     }
 }

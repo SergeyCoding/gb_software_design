@@ -6,6 +6,8 @@ import ru.geekbrains.lesson3.carparts.GearboxType;
 import ru.geekbrains.lesson3.refueling.Refueling;
 
 import java.awt.*;
+import java.io.Console;
+import java.util.Scanner;
 
 public abstract class Car {
 
@@ -19,13 +21,17 @@ public abstract class Car {
      * Заправить автомобиль
      */
     public void setFuelType(FuelType fuelType) {
-      this.fuelType =fuelType;
+      System.out.println(make+" "+model+" заправлен " + fuelType);
     }
 
     // Движение
     public abstract void movement();
+
     // Обслуживание
-    public abstract void maintenance();
+    public  void maintenance(String maintanceType){
+        System.out.println(make+" "+model+" "+maintanceType);
+    }
+
     // Переключение передач
     public abstract boolean gearShifting();
     // Включение фар

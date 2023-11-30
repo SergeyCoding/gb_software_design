@@ -16,11 +16,6 @@ public class UrbanCar extends  Car{
     }
 
     @Override
-    public void maintenance() {
-
-    }
-
-    @Override
     public boolean gearShifting() {
         return false;
     }

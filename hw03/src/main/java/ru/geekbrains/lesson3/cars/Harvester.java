@@ -1,9 +1,5 @@
 package ru.geekbrains.lesson3.cars;
 
-import ru.geekbrains.lesson3.carparts.FuelType;
-import ru.geekbrains.lesson3.cars.Car;
-import ru.geekbrains.lesson3.refueling.Refueling;
-
 import java.awt.*;
 
 public class Harvester extends Car  {
@@ -22,10 +18,7 @@ public class Harvester extends Car  {
 
     }
 
-    @Override
-    public void maintenance() {
 
-    }
 
     @Override
     public boolean gearShifting() {

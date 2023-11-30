@@ -1,6 +1,7 @@
 package ru.geekbrains.lesson3.refueling;
 
 import ru.geekbrains.lesson3.carparts.FuelType;
+import ru.geekbrains.lesson3.cars.Car;
 
 public class RefuelingStationV2 implements Refueling {
 
@@ -12,7 +13,7 @@ public class RefuelingStationV2 implements Refueling {
     }
 
     @Override
-    public void fuel(FuelType fuelType) {
-        processCarFuel(fuelType);
+    public void fuel(Car car) {
+        processCarFuel(car.fuelType);
     }
 }
