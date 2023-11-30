@@ -1,10 +1,12 @@
 package ru.geekbrains.lesson3.cars;
 
+import ru.geekbrains.lesson3.carparts.FuelType;
 import ru.geekbrains.lesson3.cars.Car;
+import ru.geekbrains.lesson3.refueling.Refueling;
 
 import java.awt.*;
 
-public class Harvester extends Car {
+public class Harvester extends Car  {
 
     public Harvester(String make, String model, Color color) {
         super(make, model, color);
@@ -39,4 +41,5 @@ public class Harvester extends Car {
     public boolean switchWipers() {
         return false;
     }
+
 }

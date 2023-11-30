@@ -1,4 +1,4 @@
-package ru.geekbrains.lesson3.cars;
+package ru.geekbrains.lesson3.carparts;
 
 public enum CarType {
     Sedan,

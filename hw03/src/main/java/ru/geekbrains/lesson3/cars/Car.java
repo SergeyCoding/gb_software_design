@@ -1,5 +1,8 @@
 package ru.geekbrains.lesson3.cars;
 
+import ru.geekbrains.lesson3.carparts.CarType;
+import ru.geekbrains.lesson3.carparts.FuelType;
+import ru.geekbrains.lesson3.carparts.GearboxType;
 import ru.geekbrains.lesson3.refueling.Refueling;
 
 import java.awt.*;
@@ -17,10 +20,6 @@ public abstract class Car {
      */
     public void setFuelType(FuelType fuelType) {
       this.fuelType =fuelType;
-    }
-
-    public int getWheelsCount() {
-        return wheelsCount;
     }
 
     // Движение
@@ -41,10 +40,6 @@ public abstract class Car {
         return fogLights;
     }
 
-    //endregion
-
-    //region Поля
-
     private Refueling refueling;
 
     // Марка автомобиля
@@ -57,22 +52,17 @@ public abstract class Car {
     private Color color;
 
     // Тип
-    protected CarType type;
+    public CarType carType;
 
     // Число колес
-    protected int wheelsCount = 4;
+    public int wheelsCount = 4;
 
     // Тип топлива
-    protected FuelType fuelType = FuelType.Diesel;
+    public FuelType fuelType = FuelType.Diesel;
 
     // Тип коробки передач
-    private GearboxType gearboxType;
+    public GearboxType gearboxType;
 
     // Объем двигателя
-    private double engineCapacity;
-
-
-
-    //endregion
-
+    public double engineCapacity;
 }

@@ -1,6 +1,6 @@
 package ru.geekbrains.lesson3.refueling;
 
-import ru.geekbrains.lesson3.cars.FuelType;
+import ru.geekbrains.lesson3.carparts.FuelType;
 
 /**
  * Заправочная станция

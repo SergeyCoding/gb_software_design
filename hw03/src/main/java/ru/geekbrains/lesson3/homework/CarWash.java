@@ -1,5 +1,7 @@
 package ru.geekbrains.lesson3.homework;
 
+import ru.geekbrains.lesson3.cars.Car;
+import ru.geekbrains.lesson3.cars.SportCar;
 import ru.geekbrains.lesson3.refueling.Wiping;
 
 /**
@@ -8,17 +10,18 @@ import ru.geekbrains.lesson3.refueling.Wiping;
 public class CarWash implements Wiping {
 
     @Override
-    public void wipMirrors() {
+    public void wipMirrors(Car car) {
 
     }
 
     @Override
-    public void wipWindshield() {
+    public void wipWindshield(Car car) {
 
     }
 
     @Override
-    public void wipHeadlights() {
+    public void wipHeadlights(Car car) {
 
     }
+
 }
