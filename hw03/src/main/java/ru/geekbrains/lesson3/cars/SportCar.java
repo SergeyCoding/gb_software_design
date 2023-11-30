@@ -1,8 +1,8 @@
-package ru.geekbrains.lesson3;
+package ru.geekbrains.lesson3.cars;
 
 import java.awt.*;
 
-public class SportCar extends Car{
+public class SportCar extends Car {
 
 
     private SportCar(String make, String model, Color color, int wheelsCount) {

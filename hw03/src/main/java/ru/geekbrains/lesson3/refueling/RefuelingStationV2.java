@@ -1,4 +1,7 @@
-package ru.geekbrains.lesson3;
+package ru.geekbrains.lesson3.refueling;
+
+import ru.geekbrains.lesson3.cars.FuelType;
+import ru.geekbrains.lesson3.refueling.Refueling;
 
 public class RefuelingStationV2 implements Refueling {
 

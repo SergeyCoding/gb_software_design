@@ -1,4 +1,6 @@
-package ru.geekbrains.lesson3;
+package ru.geekbrains.lesson3.cars;
+
+import ru.geekbrains.lesson3.cars.Car;
 
 import java.awt.*;
 

@@ -1,6 +1,9 @@
-package ru.geekbrains.lesson3;
+package ru.geekbrains.lesson3.refueling;
 
-public class RefuelingStation implements Refueling{
+import ru.geekbrains.lesson3.cars.FuelType;
+import ru.geekbrains.lesson3.refueling.Refueling;
+
+public class RefuelingStation implements Refueling {
     @Override
     public void fuel(FuelType fuelType) {
         switch (fuelType){

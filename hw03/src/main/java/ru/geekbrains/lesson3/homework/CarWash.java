@@ -1,10 +1,11 @@
-package ru.geekbrains.lesson3;
+package ru.geekbrains.lesson3.homework;
 
-public class ServiceStation implements Refueling, Wiping{
-    @Override
-    public void fuel(FuelType fuelType) {
+import ru.geekbrains.lesson3.refueling.Wiping;
 
-    }
+/**
+ * автомойка
+ */
+public class CarWash implements Wiping {
 
     @Override
     public void wipMirrors() {
