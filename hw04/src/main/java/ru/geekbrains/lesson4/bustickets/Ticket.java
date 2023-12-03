@@ -1,4 +1,4 @@
-package ru.geekbrains.lesson4.task2;
+package ru.geekbrains.lesson4.bustickets;
 
 import java.util.Date;
 

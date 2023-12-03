@@ -1,4 +1,4 @@
-package ru.geekbrains.lesson4.task2;
+package ru.geekbrains.lesson4.bustickets;
 
 /**
  * Автобусная станция (отдельный комплекс)

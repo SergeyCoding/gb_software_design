@@ -1,8 +1,10 @@
-package ru.geekbrains.lesson4.task2;
+package ru.geekbrains.lesson4.bustickets;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import com.google.java.contract.*;
+
 
 public class TicketProvider {
 

@@ -1,4 +1,4 @@
-package ru.geekbrains.lesson4.task2;
+package ru.geekbrains.lesson4.bustickets;
 
 import java.util.Collection;
 import java.util.Date;
@@ -23,8 +23,5 @@ public class Program {
         Collection<Ticket> tickets = mobileApp.getTickets();
 
         busStation.checkTicket("AAA");
-
-
     }
-
 }
