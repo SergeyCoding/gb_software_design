@@ -1,21 +1,20 @@
 package ru.geekbrains.lesson4.bustickets;
 
+
 import java.util.Date;
 
-class Ticket{
+public class Ticket {
 
     static int counter = 4000;
-
-    public Ticket(){
-        id = ++counter;
-    }
-
     private int id;
     private int customerId;
     private Date date;
     private String qrcode;
-
     private boolean enable = true;
+
+    public Ticket() {
+        id = ++counter;
+    }
 
     public int getId() {
         return id;

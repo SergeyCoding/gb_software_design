@@ -9,7 +9,7 @@ public class Core {
     private final PaymentProvider paymentProvider;
     private final Database database;
 
-    public Core(){
+    public Core() throws Exception {
         database = new Database();
         customerProvider = new CustomerProvider(database);
         paymentProvider = new PaymentProvider();
@@ -18,6 +18,7 @@ public class Core {
 
     /**
      * Внешний сервис
+     *
      * @return возвращает сервис по работе с билетами
      */
     public TicketProvider getTicketProvider() {
@@ -26,6 +27,7 @@ public class Core {
 
     /**
      * Внешний сервис
+     *
      * @return возвращает сервис по работе с покупателями
      */
     public CustomerProvider getCustomerProvider() {

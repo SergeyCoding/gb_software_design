@@ -8,7 +8,7 @@ public class CustomerProvider {
         this.database = database;
     }
 
-    public Customer getCustomer(String login, String password){
+    public Customer getCustomer(String login, String password) {
         //TODO: Процесс аутентификации
         return new Customer();
     }

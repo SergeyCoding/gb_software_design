@@ -7,11 +7,11 @@ public class BusStation {
 
     private final TicketProvider ticketProvider;
 
-    public BusStation(TicketProvider ticketProvider){
+    public BusStation(TicketProvider ticketProvider) {
         this.ticketProvider = ticketProvider;
     }
 
-    public boolean checkTicket(String qrCode){
+    public boolean checkTicket(String qrCode) throws Exception {
         return ticketProvider.checkTicket(qrCode);
     }
 

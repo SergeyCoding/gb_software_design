@@ -5,9 +5,10 @@ import java.util.Collection;
 
 public class Database {
 
-
-    public Database(){
-
+    private static int counter = 100;
+    private Collection<Ticket> tickets = new ArrayList<>();
+    private Collection<Customer> customers = new ArrayList<>();
+    public Database() {
 
         Customer customer1 = new Customer();
         Ticket ticket1 = new Ticket();
@@ -21,13 +22,7 @@ public class Database {
         tickets.add(ticket3);
         customers.add(customer1);
 
-
     }
-
-    private static int counter = 100;
-
-    private Collection<Ticket> tickets = new ArrayList<>();
-    private Collection<Customer> customers = new ArrayList<>();
 
     public Collection<Ticket> getTickets() {
         return tickets;
@@ -39,17 +34,19 @@ public class Database {
 
     /**
      * Получить актуальную стоимость билета
+     *
      * @return
      */
-    public double getTicketAmount(){
+    public double getTicketAmount() {
         return 45;
     }
 
     /**
      * Получить идентификатор заявки на покупку билета
+     *
      * @return
      */
-    public int createTicketOrder(int clientId){
+    public int createTicketOrder(int clientId) {
         return ++counter;
     }
 }
