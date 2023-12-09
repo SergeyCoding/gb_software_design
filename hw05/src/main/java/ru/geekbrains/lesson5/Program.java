@@ -19,7 +19,7 @@ public class Program {
      * Сквозная функция – создать новую 3D модель, сделать рендер для печати на принтере…
      */
     public static void main(String[] args) {
-        Editor3D editor3D = new Editor3D();
+        UILayer editor3D = new Editor3D();
         Scanner scanner = new Scanner(System.in);
         boolean f = true;
         while (f) {
