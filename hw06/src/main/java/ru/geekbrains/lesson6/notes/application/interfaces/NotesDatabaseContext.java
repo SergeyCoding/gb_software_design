@@ -7,6 +7,9 @@ import java.util.Collection;
 public interface NotesDatabaseContext {
 
     Collection<Note> getAll();
+
+    void addNote(Note note);
+
     boolean saveChanges();
 
 }

@@ -14,15 +14,17 @@ public class NotesTable {
         return records;
     }
 
-    private void prepareRecords(){
-        if (records == null)
-        {
+    private void prepareRecords() {
+        if (records == null) {
             records = new ArrayList<>();
-            int recordsCount =  5  + random.nextInt(10);
-            for (int i = 0; i < recordsCount; i++){
+            int recordsCount = 5 + random.nextInt(10);
+            for (int i = 0; i < recordsCount; i++) {
                 records.add(new NotesRecord("title #" + i, "details #" + i));
             }
         }
     }
 
+    public void addRecord(NotesRecord notesRecord) {
+        records.add(notesRecord);
+    }
 }

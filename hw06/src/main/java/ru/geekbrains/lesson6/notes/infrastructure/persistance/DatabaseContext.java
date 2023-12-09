@@ -19,7 +19,7 @@ public class DatabaseContext extends DbContext implements NotesDatabaseContext {
     public Collection<Note> getAll() {
         Collection<Note> notesList = new ArrayList<>();
         //TODO: Этого кастинга быть не должно, тут должен работать внутренний механизм фреймворка
-        for (NotesRecord record : ((NotesDatabase)database).getNotesTable().getRecords()){
+        for (NotesRecord record : ((NotesDatabase) database).getNotesTable().getRecords()) {
             notesList.add(new Note(
                     record.getId(),
                     record.getUserId(),
@@ -29,6 +29,12 @@ public class DatabaseContext extends DbContext implements NotesDatabaseContext {
             ));
         }
         return notesList;
+    }
+
+    @Override
+    public void addNote(Note note) {
+        var zz = ((NotesDatabase) database).getNotesTable();
+        zz.addRecord(new NotesRecord(note.getTitle(), note.getDetails()));
     }
 
     @Override

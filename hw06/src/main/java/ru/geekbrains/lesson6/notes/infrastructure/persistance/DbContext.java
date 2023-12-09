@@ -4,22 +4,23 @@ public abstract class DbContext {
 
     protected Database database;
 
-    public DbContext(Database database){
+    public DbContext(Database database) {
         this.database = database;
     }
 
     protected abstract void onModelCreating(ModelBuilder builder);
 
-    public boolean saveChanges(){
+    public boolean saveChanges() {
         //TODO: Сохранение изменений в базе данных
+        database.saveChanges();
         return true;
     }
 
 }
 
-class ModelBuilder{
+class ModelBuilder {
 
-    public ModelBuilder applyConfiguration(ModelConfiguration configuration){
+    public ModelBuilder applyConfiguration(ModelConfiguration configuration) {
         //TODO: добавление конфигурации маппинга объекта некоторого типа к структуре таблицы базы данных ...
         return this;
     }

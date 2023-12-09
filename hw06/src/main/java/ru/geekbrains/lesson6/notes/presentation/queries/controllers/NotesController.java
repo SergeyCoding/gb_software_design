@@ -2,14 +2,11 @@ package ru.geekbrains.lesson6.notes.presentation.queries.controllers;
 
 import ru.geekbrains.lesson6.notes.application.interfaces.NoteEditor;
 import ru.geekbrains.lesson6.notes.domain.Note;
-import ru.geekbrains.lesson6.notes.presentation.queries.controllers.Controller;
 
 public class NotesController extends Controller {
-
-
     private final NoteEditor notesEditor;
 
-    public NotesController(NoteEditor notesEditor){
+    public NotesController(NoteEditor notesEditor) {
         this.notesEditor = notesEditor;
     }
 
@@ -21,9 +18,8 @@ public class NotesController extends Controller {
         this.notesEditor.remove(note);
     }
 
-    public void routeGetAll(){
+    public void routeGetAll() {
         notesEditor.printAll();
     }
-
-
 }
+

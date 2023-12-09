@@ -10,4 +10,8 @@ public class NotesDatabase implements Database {
         return notesTable;
     }
 
+    @Override
+    public void saveChanges() {
+
+    }
 }

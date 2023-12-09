@@ -16,18 +16,18 @@ public class ConcreteNoteEditor implements NoteEditor {
 
     public ConcreteNoteEditor(
             NotesPresenter notesPresenter,
-            NotesDatabaseContext dbContext){
+            NotesDatabaseContext dbContext) {
         this.dbContext = dbContext;
         this.notesPresenter = notesPresenter;
     }
 
-    public void printAll(){
+    public void printAll() {
         notesPresenter.printAll(getAll());
     }
 
     @Override
     public boolean add(Note item) {
-        dbContext.getAll().add(item);
+        dbContext.addNote(item);
         return dbContext.saveChanges();
     }
 
