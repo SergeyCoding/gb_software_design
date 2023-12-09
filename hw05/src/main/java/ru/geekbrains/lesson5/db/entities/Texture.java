@@ -1,4 +1,6 @@
-package ru.geekbrains.lesson5;
+package ru.geekbrains.lesson5.db.entities;
+
+import ru.geekbrains.lesson5.db.Entity;
 
 public class Texture implements Entity {
 

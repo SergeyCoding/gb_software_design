@@ -1,4 +1,6 @@
-package ru.geekbrains.lesson5;
+package ru.geekbrains.lesson5.db.entities;
+
+import ru.geekbrains.lesson5.db.Entity;
 
 import java.util.ArrayList;
 import java.util.Collection;

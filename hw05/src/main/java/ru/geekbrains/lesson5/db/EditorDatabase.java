@@ -1,4 +1,9 @@
-package ru.geekbrains.lesson5;
+package ru.geekbrains.lesson5.db;
+
+import ru.geekbrains.lesson5.db.entities.Model3D;
+import ru.geekbrains.lesson5.db.entities.Texture;
+import ru.geekbrains.lesson5.dbaccess.Database;
+import ru.geekbrains.lesson5.ui.ProjectFile;
 
 import java.util.ArrayList;
 import java.util.Collection;

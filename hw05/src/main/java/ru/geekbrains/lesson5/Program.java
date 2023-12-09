@@ -1,5 +1,7 @@
 package ru.geekbrains.lesson5;
 
+import ru.geekbrains.lesson5.ui.Editor3D;
+
 import java.util.Scanner;
 
 public class Program {

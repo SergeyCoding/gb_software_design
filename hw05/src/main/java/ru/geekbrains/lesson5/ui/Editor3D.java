@@ -1,4 +1,13 @@
-package ru.geekbrains.lesson5;
+package ru.geekbrains.lesson5.ui;
+
+import ru.geekbrains.lesson5.UILayer;
+import ru.geekbrains.lesson5.bl.DatabaseAccess;
+import ru.geekbrains.lesson5.bl.EditorBusinessLogicalLayer;
+import ru.geekbrains.lesson5.db.EditorDatabase;
+import ru.geekbrains.lesson5.db.entities.Model3D;
+import ru.geekbrains.lesson5.db.entities.Texture;
+import ru.geekbrains.lesson5.dbaccess.Database;
+import ru.geekbrains.lesson5.dbaccess.EditorDatabaseAccess;
 
 import java.util.ArrayList;
 
