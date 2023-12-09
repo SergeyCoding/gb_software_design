@@ -9,10 +9,10 @@ public class Editor3D implements UILayer {
     private DatabaseAccess databaseAccess;
     private Database database;
 
-    public Editor3D(){
+    public Editor3D() {
     }
 
-    private void initialize(){
+    private void initialize() {
         database = new EditorDatabase(projectFile);
         databaseAccess = new EditorDatabaseAccess(database);
         businessLogicalLayer = new EditorBusinessLogicalLayer(databaseAccess);
@@ -44,11 +44,11 @@ public class Editor3D implements UILayer {
 
     @Override
     public void printAllModels() {
-        ArrayList<Model3D> models = (ArrayList<Model3D>)businessLogicalLayer.getAllModels();
-        for (int i = 0; i < models.size(); i++){
+        ArrayList<Model3D> models = (ArrayList<Model3D>) businessLogicalLayer.getAllModels();
+        for (int i = 0; i < models.size(); i++) {
             System.out.printf("===%d===\n", i);
             System.out.println(models.get(i));
-            for (Texture texture: models.get(i).getTextures()) {
+            for (Texture texture : models.get(i).getTextures()) {
                 System.out.printf("\t%s\n", texture);
             }
         }
@@ -56,8 +56,8 @@ public class Editor3D implements UILayer {
 
     @Override
     public void printAllTextures() {
-        ArrayList<Texture> textures = (ArrayList<Texture>)businessLogicalLayer.getAllTextures();
-        for (int i = 0; i < textures.size(); i++){
+        ArrayList<Texture> textures = (ArrayList<Texture>) businessLogicalLayer.getAllTextures();
+        for (int i = 0; i < textures.size(); i++) {
             System.out.printf("===%d===\n", i);
             System.out.println(textures.get(i));
         }
@@ -74,12 +74,23 @@ public class Editor3D implements UILayer {
 
     @Override
     public void renderModel(int i) {
-        ArrayList<Model3D> models = (ArrayList<Model3D>)businessLogicalLayer.getAllModels();
+        ArrayList<Model3D> models = (ArrayList<Model3D>) businessLogicalLayer.getAllModels();
         if (i < 0 || i > models.size() - 1)
             throw new RuntimeException("Номер модели указан некорректною.");
         System.out.println("Подождите ...");
         long startTime = System.currentTimeMillis();
         businessLogicalLayer.renderModel(models.get(i));
+        long endTime = (System.currentTimeMillis() - startTime);
+        System.out.printf("Операция выполнена за %d мс.\n", endTime);
+    }
+
+    public void deleteModel(int modelNo) {
+        ArrayList<Model3D> models = (ArrayList<Model3D>) businessLogicalLayer.getAllModels();
+        if (modelNo < 0 || modelNo > models.size() - 1)
+            throw new RuntimeException("Номер модели указан некорректною.");
+        System.out.println("Подождите ...");
+        long startTime = System.currentTimeMillis();
+        businessLogicalLayer.deleteModel(models.get(modelNo));
         long endTime = (System.currentTimeMillis() - startTime);
         System.out.printf("Операция выполнена за %d мс.\n", endTime);
     }

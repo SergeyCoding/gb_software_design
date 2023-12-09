@@ -10,8 +10,9 @@ import java.util.Random;
 public class EditorBusinessLogicalLayer implements BusinessLogicalLayer {
 
     private DatabaseAccess databaseAccess;
+    private Random random = new Random();
 
-    public EditorBusinessLogicalLayer(DatabaseAccess databaseAccess){
+    public EditorBusinessLogicalLayer(DatabaseAccess databaseAccess) {
         this.databaseAccess = databaseAccess;
     }
 
@@ -32,17 +33,20 @@ public class EditorBusinessLogicalLayer implements BusinessLogicalLayer {
 
     @Override
     public void renderAllModels() {
-        for (Model3D model: getAllModels()) {
+        for (Model3D model : getAllModels()) {
             processRender(model);
         }
     }
 
-    private Random random = new Random();
-    private void processRender(Model3D model){
+    @Override
+    public void deleteModel(Model3D model3D) {
+        databaseAccess.removeEntity(model3D);
+    }
+
+    private void processRender(Model3D model) {
         try {
             Thread.sleep(2500 - random.nextInt(2000));
-        }
-        catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

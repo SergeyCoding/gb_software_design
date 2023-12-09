@@ -12,11 +12,11 @@ public class Model3D implements Entity {
         id = ++counter;
     }
 
-    public Model3D(){
+    public Model3D() {
 
     }
 
-    public Model3D(Collection<Texture> textures){
+    public Model3D(Collection<Texture> textures) {
         this.textures = textures;
     }
 

@@ -7,7 +7,7 @@ public class EditorDatabaseAccess implements DatabaseAccess {
 
     private final Database editorDatabase;
 
-    public EditorDatabaseAccess(Database editorDatabase){
+    public EditorDatabaseAccess(Database editorDatabase) {
         this.editorDatabase = editorDatabase;
 
     }
@@ -25,10 +25,9 @@ public class EditorDatabaseAccess implements DatabaseAccess {
     @Override
     public Collection<Texture> getAllTextures() {
         Collection<Texture> models = new ArrayList<>();
-        for (Entity entity: editorDatabase.getAll()) {
-            if (entity instanceof Texture)
-            {
-                models.add((Texture)entity);
+        for (Entity entity : editorDatabase.getAll()) {
+            if (entity instanceof Texture) {
+                models.add((Texture) entity);
             }
         }
         return models;
@@ -37,10 +36,9 @@ public class EditorDatabaseAccess implements DatabaseAccess {
     @Override
     public Collection<Model3D> getAllModels() {
         Collection<Model3D> models = new ArrayList<>();
-        for (Entity entity: editorDatabase.getAll()) {
-            if (entity instanceof Model3D)
-            {
-                models.add((Model3D)entity);
+        for (Entity entity : editorDatabase.getAll()) {
+            if (entity instanceof Model3D) {
+                models.add((Model3D) entity);
             }
         }
         return models;
