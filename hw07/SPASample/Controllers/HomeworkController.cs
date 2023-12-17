@@ -4,11 +4,15 @@ namespace SPASample.Controllers
 {
     public class HomeworkController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Home()
         {
             return View();
         }
-        public IActionResult Show()
+        public IActionResult Cat()
+        {
+            return View();
+        }
+        public IActionResult Dog()
         {
             return View();
         }
