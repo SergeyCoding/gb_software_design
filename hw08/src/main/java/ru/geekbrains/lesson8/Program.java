@@ -11,7 +11,6 @@ public class Program {
 
     /**
      * TODO: Домашнее задание - метод changeReservationTable заработал!
-     * @param args
      */
     public static void main(String[] args) {
 

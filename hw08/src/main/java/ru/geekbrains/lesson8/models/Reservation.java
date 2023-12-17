@@ -2,15 +2,28 @@ package ru.geekbrains.lesson8.models;
 
 import java.util.Date;
 
+/**
+ * Reservation
+ */
 public class Reservation {
 
     private static int counter = 1000;
     private final int id;
 
-    private Table table;
+    private final Table table;
 
     private Date date;
     private String name;
+
+    {
+        id = ++counter;
+    }
+
+    public Reservation(Table table, Date date, String name) {
+        this.table = table;
+        this.date = date;
+        this.name = name;
+    }
 
     public int getId() {
         return id;
@@ -22,16 +35,6 @@ public class Reservation {
 
     public String getName() {
         return name;
-    }
-
-    {
-        id = ++counter;
-    }
-
-    public Reservation(Table table, Date date, String name) {
-        this.table = table;
-        this.date = date;
-        this.name = name;
     }
 
 }

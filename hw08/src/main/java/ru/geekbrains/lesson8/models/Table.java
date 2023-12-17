@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
 
+/**
+ * Table
+ */
 public class Table {
 
     private static int counter;
     private final int no;
-
     private final Collection<Reservation> reservations = new ArrayList<>();
 
     {

@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+/**
+ * TableService
+ */
 public class TableService implements Model {
 
     private Collection<Table> tables;

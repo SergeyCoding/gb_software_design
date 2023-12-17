@@ -7,7 +7,6 @@ import ru.geekbrains.lesson8.presenters.ViewObserver;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 public class BookingView implements View {
 
@@ -18,8 +17,8 @@ public class BookingView implements View {
         observers.add(observer);
     }
 
-    public void showTables(Collection<Table> tables){
-        for (Table table: tables) {
+    public void showTables(Collection<Table> tables) {
+        for (Table table : tables) {
             System.out.println(table);
         }
     }
@@ -33,13 +32,15 @@ public class BookingView implements View {
 
     }
 
-    public void changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name){
+    public void changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name) {
+        for (ViewObserver observer : observers) {
+            observer.onChangeReservationTable(oldReservation, reservationDate, tableNo, name);
+        }
     }
 
 
-
-    public void reservationTable(Date orderDate, int tableNo, String name){
-        for (ViewObserver observer : observers){
+    public void reservationTable(Date orderDate, int tableNo, String name) {
+        for (ViewObserver observer : observers) {
             observer.onReservationTable(orderDate, tableNo, name);
         }
     }
