@@ -1,5 +1,6 @@
 package ru.geekbrains.lesson8.presenters;
 
+import ru.geekbrains.lesson8.models.Reservation;
 import ru.geekbrains.lesson8.models.Table;
 
 import java.util.Collection;
@@ -13,4 +14,5 @@ public interface Model {
 
     int changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name);
 
+    Collection<Reservation> getReservations();
 }

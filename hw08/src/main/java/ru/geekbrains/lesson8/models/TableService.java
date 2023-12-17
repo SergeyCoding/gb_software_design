@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class TableService implements Model {
 
-    private Collection<Reservation> reservations;
+    private final Collection<Reservation> reservations = new ArrayList<>();
     private Collection<Table> tables;
 
     @Override
@@ -27,6 +27,10 @@ public class TableService implements Model {
         }
 
         return tables;
+    }
+
+    public Collection<Reservation> getReservations() {
+        return reservations;
     }
 
     @Override
@@ -50,6 +54,13 @@ public class TableService implements Model {
 
     @Override
     public int changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name) {
-        return -1;
+        for (Reservation r : reservations) {
+            if (r.getId() == oldReservation) {
+                reservations.remove(r);
+                break;
+            }
+        }
+
+        return reservationTable(reservationDate, tableNo, name);
     }
 }
