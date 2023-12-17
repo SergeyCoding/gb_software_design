@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MyFirstWebApplication.Models;
 
 namespace MyFirstWebApplication.Controllers
@@ -20,7 +19,7 @@ namespace MyFirstWebApplication.Controllers
         [HttpPost("add")]
         public IActionResult Add([FromQuery] DateTime date, [FromQuery] int temperatureC)
         {
-            _weatherForecastHolder.Add(date, temperatureC); 
+            _weatherForecastHolder.Add(date, temperatureC);
             return Ok();
         }
 
@@ -36,10 +35,11 @@ namespace MyFirstWebApplication.Controllers
             return Ok(_weatherForecastHolder.Get(dateFrom, dateTo));
         }
 
+
         [HttpDelete("delete")]
         public IActionResult Delete([FromQuery] DateTime date)
         {
-            return Ok();
+            return Ok(_weatherForecastHolder.Delete(date));
         }
 
     }

@@ -65,9 +65,12 @@
         /// <returns>Результат выполнения операции</returns>
         public bool Delete(DateTime date)
         {
+            var weatherForecast = _values.FirstOrDefault(x => x.Date.Equals(date));
+
+            if (weatherForecast != null)
+                return _values.Remove(weatherForecast);
+
             return false;
         }
-
-
     }
 }
