@@ -6,14 +6,11 @@ import java.util.Date;
  * Reservation
  */
 public class Reservation {
-
     private static int counter = 1000;
     private final int id;
-
     private final Table table;
-
-    private Date date;
-    private String name;
+    private final Date date;
+    private final String name;
 
     {
         id = ++counter;
@@ -23,6 +20,10 @@ public class Reservation {
         this.table = table;
         this.date = date;
         this.name = name;
+    }
+
+    public Table getTable() {
+        return table;
     }
 
     public int getId() {

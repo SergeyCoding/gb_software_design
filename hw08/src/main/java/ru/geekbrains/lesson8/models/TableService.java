@@ -11,6 +11,7 @@ import java.util.Date;
  */
 public class TableService implements Model {
 
+    private Collection<Reservation> reservations;
     private Collection<Table> tables;
 
     @Override
@@ -31,16 +32,23 @@ public class TableService implements Model {
     @Override
     public int reservationTable(Date reservationDate, int tableNo, String name) {
 
+        for (Reservation r : reservations) {
+            if (r.getTable().getNo() == tableNo && r.getDate().equals(reservationDate)) {
+                throw new RuntimeException("Столик уже зарезервирован");
+            }
+        }
+
         for (Table table : tables) {
             if (table.getNo() == tableNo) {
                 Reservation reservation = new Reservation(table, reservationDate, name);
-                table.getReservations().add(reservation);
+                reservations.add(reservation);
                 return reservation.getId();
             }
         }
         throw new RuntimeException("Некорректный номер столика");
     }
 
+    @Override
     public int changeReservationTable(int oldReservation, Date reservationDate, int tableNo, String name) {
         return -1;
     }
