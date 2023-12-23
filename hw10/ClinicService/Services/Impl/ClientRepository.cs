@@ -101,6 +101,6 @@ namespace ClinicService.Services.Impl
             command.Prepare();
             return command.ExecuteNonQuery();
         }
-        
+
     }
 }

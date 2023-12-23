@@ -1,8 +1,6 @@
-﻿using ClinicService.Models.Requests;
-using ClinicService.Models;
+﻿using ClinicService.Models;
+using ClinicService.Models.Requests;
 using ClinicService.Services;
-using ClinicService.Services.Impl;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClinicService.Controllers
