@@ -31,20 +31,20 @@ namespace ClinicService.Controllers
         [HttpDelete("delete")]
         public IActionResult Delete([FromQuery] int clientId)
         {
-            int res = _clientRepository.Delete(clientId);
+            int res = _consultationRepository.Delete(clientId);
             return Ok(res);
         }
 
         [HttpGet("get-all")]
         public IActionResult GetAll()
         {
-            return Ok(_clientRepository.GetAll());
+            return Ok(_consultationRepository.GetAll());
         }
 
         [HttpGet("get/{clientId}")]
         public IActionResult GetById([FromRoute] int clientId)
         {
-            return Ok(_clientRepository.GetById(clientId));
+            return Ok(_consultationRepository.GetById(clientId));
         }
     }
 }
