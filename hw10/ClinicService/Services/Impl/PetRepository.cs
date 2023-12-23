@@ -4,6 +4,12 @@ namespace ClinicService.Services.Impl
 {
     public class PetRepository : IPetRepository
     {
+        private readonly string _connectionString;
+
+        public PetRepository(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("db")!;
+        }
         public int Create(Pet item)
         {
             throw new NotImplementedException();

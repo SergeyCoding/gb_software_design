@@ -5,9 +5,12 @@ namespace ClinicService.Services.Impl
 {
     public class ClientRepository : IClientRepository
     {
-        private const string _connectionString = "Data Source = clinic.db;";
+        private readonly string _connectionString;
 
-
+        public ClientRepository(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("db")!;
+        }
         public int Create(Client item)
         {
             using SqliteConnection connection = new SqliteConnection();

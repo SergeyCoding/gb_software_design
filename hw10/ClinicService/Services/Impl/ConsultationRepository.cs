@@ -4,6 +4,12 @@ namespace ClinicService.Services.Impl
 {
     public class ConsultationRepository : IConsultationRepository
     {
+        private readonly string _connectionString;
+
+        public ConsultationRepository(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("db")!;
+        }
         public int Create(Consultation item)
         {
             throw new NotImplementedException();
