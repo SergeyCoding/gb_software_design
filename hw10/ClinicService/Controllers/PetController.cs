@@ -33,9 +33,9 @@ namespace ClinicService.Controllers
 
 
         [HttpDelete("delete")]
-        public IActionResult Delete([FromQuery] int clientId)
+        public IActionResult Delete([FromQuery] int id)
         {
-            int res = _petRepository.Delete(clientId);
+            int res = _petRepository.Delete(id);
             return Ok(res);
         }
 
@@ -45,10 +45,10 @@ namespace ClinicService.Controllers
             return Ok(_petRepository.GetAll());
         }
 
-        [HttpGet("get/{clientId}")]
-        public IActionResult GetById([FromRoute] int clientId)
+        [HttpGet("get/{id}")]
+        public IActionResult GetById([FromRoute] int id)
         {
-            return Ok(_petRepository.GetById(clientId));
+            return Ok(_petRepository.GetById(id));
         }
     }
 }

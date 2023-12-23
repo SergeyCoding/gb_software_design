@@ -1,4 +1,5 @@
 ﻿using ClinicService.Models;
+using Dapper;
 using Microsoft.Data.Sqlite;
 
 namespace ClinicService.Services.Impl
@@ -15,107 +16,47 @@ namespace ClinicService.Services.Impl
 
         public int Create(Pet item)
         {
-            using SqliteConnection connection = new SqliteConnection();
-            connection.ConnectionString = _connectionString;
-            connection.Open();
+            using var connection = new SqliteConnection(_connectionString);
 
-            using SqliteCommand command =
-               new SqliteCommand($"INSERT INTO pets(ClientId,Name,Birthday) VALUES(@ClientId,@Name,@Birthday)", connection);
+            var sql = "INSERT INTO pets(ClientId,Name,Birthday) VALUES(@ClientId,@Name,@Birthday)";
 
-            command.Parameters.AddWithValue("@ClientId", item.ClientId);
-            command.Parameters.AddWithValue("@Name", item.Name);
-            command.Parameters.AddWithValue("@Birthday", item.Birthday);
-            command.Prepare();
-
-            return command.ExecuteNonQuery();
+            return connection.Execute(sql, item);
         }
 
         public int Update(Pet item)
         {
-            using SqliteConnection connection = new SqliteConnection();
-            connection.ConnectionString = _connectionString;
-            connection.Open();
+            using SqliteConnection connection = new SqliteConnection(_connectionString);
 
-            using SqliteCommand command =
-                new SqliteCommand("UPDATE pets SET ClientId = @ClientId, Name = @Name, Birthday = @Birthday WHERE PetId=@PetId", connection);
+            const string sql = "UPDATE pets SET ClientId = @ClientId, Name = @Name, Birthday = @Birthday WHERE PetId=@PetId";
 
-            command.Parameters.AddWithValue("@PetId", item.PetId);
-            command.Parameters.AddWithValue("@ClientId", item.ClientId);
-            command.Parameters.AddWithValue("@Name", item.Name);
-            command.Parameters.AddWithValue("@Birthday", item.Birthday);
-            command.Prepare();
-
-            return command.ExecuteNonQuery();
+            return connection.Execute(sql, item);
         }
 
         public Pet GetById(int id)
         {
-            using SqliteConnection connection = new SqliteConnection();
-            connection.ConnectionString = _connectionString;
-            connection.Open();
+            using SqliteConnection connection = new SqliteConnection(_connectionString);
 
-            using SqliteCommand command =
-                new SqliteCommand("SELECT * FROM pets WHERE PetId=@PetId", connection);
+            const string sql = "SELECT * FROM pets WHERE PetId=@PetId";
 
-            command.Parameters.AddWithValue("@PetId", id);
-            command.Prepare();
-
-            SqliteDataReader reader = command.ExecuteReader();
-            if (reader.Read())
-            {
-                Pet pet = new()
-                {
-                    PetId = reader.GetInt32(0),
-                    ClientId = reader.GetInt32(1),
-                    Name = reader.GetString(2),
-                    Birthday = reader.GetDateTime(3)
-                };
-            }
-
-            return null!;
+            return connection.QuerySingle<Pet>(sql, new { PetId = id });
         }
 
         public int Delete(int id)
         {
-            using SqliteConnection connection = new SqliteConnection();
-            connection.ConnectionString = _connectionString;
-            connection.Open();
+            using SqliteConnection connection = new SqliteConnection(_connectionString);
 
-            using SqliteCommand command =
-                new SqliteCommand("DELETE FROM pets WHERE PetId=@PetId", connection);
+            const string sql = "DELETE FROM pets WHERE PetId=@PetId";
 
-            command.Parameters.AddWithValue("@PetId", id);
-            command.Prepare();
-
-            return command.ExecuteNonQuery();
+            return connection.Execute(sql, new { PetId = id });
         }
 
         public IList<Pet> GetAll()
         {
-            List<Pet> list = [];
+            using SqliteConnection connection = new SqliteConnection(_connectionString);
 
-            using SqliteConnection connection = new SqliteConnection();
-            connection.ConnectionString = _connectionString;
-            connection.Open();
+            const string sql = "SELECT * FROM pets";
 
-            using SqliteCommand command =
-                new SqliteCommand("SELECT * FROM pets", connection);
-            command.Prepare();
-
-            using SqliteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                Pet pet = new()
-                {
-                    PetId = reader.GetInt32(0),
-                    ClientId = reader.GetInt32(1),
-                    Name = reader.GetString(2),
-                    Birthday = reader.GetDateTime(3)
-                };
-
-                list.Add(pet);
-            }
-            return list;
+            return connection.Query<Pet>(sql).ToList();
         }
     }
 }

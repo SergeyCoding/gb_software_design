@@ -1,4 +1,5 @@
 ﻿using ClinicService.Models;
+using Dapper;
 using Microsoft.Data.Sqlite;
 
 namespace ClinicService.Services.Impl
@@ -14,53 +15,50 @@ namespace ClinicService.Services.Impl
 
         public int Create(Consultation item)
         {
-            using SqliteConnection connection = new SqliteConnection();
-            connection.ConnectionString = _connectionString;
-            connection.Open();
+            using var connection = new SqliteConnection(_connectionString);
 
-            using SqliteCommand command =
-               new SqliteCommand("INSERT INTO consultations(ClientId,PetId,ConsultationDate,Description) VALUES(@ClientId,@PetId,@ConsultationDate,@Description)", connection);
+            var sql = "INSERT INTO consultations(ClientId,PetId,ConsultationDate,Description)"
+                + " VALUES(@ClientId,@PetId,@ConsultationDate,@Description)";
 
-            command.Parameters.AddWithValue("@ClientId", item.ClientId);
-            command.Parameters.AddWithValue("@PetId", item.PetId);
-            command.Parameters.AddWithValue("@ConsultationDate", item.ConsultationDate);
-            command.Parameters.AddWithValue("@Description", item.Description);
-            command.Prepare();
-            return command.ExecuteNonQuery();
+            return connection.Execute(sql, item);
         }
 
         public int Update(Consultation item)
         {
-            using SqliteConnection connection = new SqliteConnection();
-            connection.ConnectionString = _connectionString;
-            connection.Open();
+            using var connection = new SqliteConnection(_connectionString);
 
-            using SqliteCommand command =
-                new SqliteCommand("UPDATE consultations SET ConsultationId=@ConsultationId, ClientId=@ClientId, PetId=@PetId, ConsultationDate=@ConsultationDate, Description=@Description", connection);
+            var sql = "UPDATE consultations " +
+                "SET ClientId=@ClientId, PetId=@PetId, ConsultationDate=@ConsultationDate, Description=@Description " +
+                "where ConsultationId=@ConsultationId";
 
-            command.Parameters.AddWithValue("@ConsultationId", item.ConsultationId);
-            command.Parameters.AddWithValue("@ClientId", item.ClientId);
-            command.Parameters.AddWithValue("@PetId", item.PetId);
-            command.Parameters.AddWithValue("@ConsultationDate", item.ConsultationDate);
-            command.Parameters.AddWithValue("@Description", item.Description);
-            command.Prepare();
-
-            return command.ExecuteNonQuery();
+            return connection.Execute(sql, item);
         }
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            using var connection = new SqliteConnection(_connectionString);
+
+            var sql = "select * from consultations";
+
+            return connection.Execute(sql, new { ConsultationId = id });
         }
 
         public IList<Consultation> GetAll()
         {
-            throw new NotImplementedException();
+            using var connection = new SqliteConnection(_connectionString);
+
+            var sql = "select * from consultations";
+
+            return connection.Query<Consultation>(sql).ToArray();
         }
 
         public Consultation GetById(int id)
         {
-            throw new NotImplementedException();
+            using var connection = new SqliteConnection(_connectionString);
+
+            var sql = "select * from consultations where ConsultationId=@ConsultationId";
+
+            return connection.QuerySingle<Consultation>(sql, new { ConsultationId = id });
         }
     }
 }
