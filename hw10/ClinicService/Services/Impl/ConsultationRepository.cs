@@ -34,15 +34,17 @@ namespace ClinicService.Services.Impl
             using SqliteConnection connection = new SqliteConnection();
             connection.ConnectionString = _connectionString;
             connection.Open();
+
             using SqliteCommand command =
                 new SqliteCommand("UPDATE consultations SET ConsultationId=@ConsultationId, ClientId=@ClientId, PetId=@PetId, ConsultationDate=@ConsultationDate, Description=@Description", connection);
+
             command.Parameters.AddWithValue("@ConsultationId", item.ConsultationId);
             command.Parameters.AddWithValue("@ClientId", item.ClientId);
             command.Parameters.AddWithValue("@PetId", item.PetId);
             command.Parameters.AddWithValue("@ConsultationDate", item.ConsultationDate);
             command.Parameters.AddWithValue("@Description", item.Description);
-            command.Parameters.
             command.Prepare();
+
             return command.ExecuteNonQuery();
         }
 

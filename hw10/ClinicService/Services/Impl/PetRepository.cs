@@ -11,19 +11,16 @@ namespace ClinicService.Services.Impl
         {
             _connectionString = configuration.GetConnectionString("db")!;
         }
+
+
         public int Create(Pet item)
         {
             using SqliteConnection connection = new SqliteConnection();
             connection.ConnectionString = _connectionString;
             connection.Open();
 
-
-
-            const string V = "ClientId,Name,Birthday";
-            var a = GetProperties(item).ToArray();
-
             using SqliteCommand command =
-               new SqliteCommand($"INSERT INTO pets({V}) VALUES(@ClientId,@Name,@Birthday)", connection);
+               new SqliteCommand($"INSERT INTO pets(ClientId,Name,Birthday) VALUES(@ClientId,@Name,@Birthday)", connection);
 
             command.Parameters.AddWithValue("@ClientId", item.ClientId);
             command.Parameters.AddWithValue("@Name", item.Name);
@@ -33,47 +30,92 @@ namespace ClinicService.Services.Impl
             return command.ExecuteNonQuery();
         }
 
-        public IEnumerable<string> GetProperties<T>(T entity)
+        public int Update(Pet item)
         {
-            return entity!.GetType().GetProperties().Select(p => p.Name).ToList();
-        }
+            using SqliteConnection connection = new SqliteConnection();
+            connection.ConnectionString = _connectionString;
+            connection.Open();
 
-        public int Update(Consultation item)
-        {
-            //using SqliteConnection connection = new SqliteConnection();
-            //connection.ConnectionString = _connectionString;
-            //connection.Open();
-            //using SqliteCommand command =
-            //    new SqliteCommand("UPDATE pets SET Document = @Document, FirstName = @FirstName, SurName = @SurName, Patronymic = @Patronymic, Birthday = @Birthday WHERE ClientId=@ClientId", connection);
-            //command.Parameters.AddWithValue("@ClientId", item.ClientId);
-            //command.Parameters.AddWithValue("@Document", item.Document);
-            //command.Parameters.AddWithValue("@SurName", item.SurName);
-            //command.Parameters.AddWithValue("@FirstName", item.FirstName);
-            //command.Parameters.AddWithValue("@Patronymic", item.Patronymic);
-            //command.Parameters.AddWithValue("@Birthday", item.Birthday.Ticks);
-            //command.Prepare();
-            //return command.ExecuteNonQuery();
-            return 0;
-        }
+            using SqliteCommand command =
+                new SqliteCommand("UPDATE pets SET ClientId = @ClientId, Name = @Name, Birthday = @Birthday WHERE PetId=@PetId", connection);
 
-        public int Delete(int id)
-        {
-            return 0;
-        }
+            command.Parameters.AddWithValue("@PetId", item.PetId);
+            command.Parameters.AddWithValue("@ClientId", item.ClientId);
+            command.Parameters.AddWithValue("@Name", item.Name);
+            command.Parameters.AddWithValue("@Birthday", item.Birthday);
+            command.Prepare();
 
-        public IList<Pet> GetAll()
-        {
-            throw new NotImplementedException();
+            return command.ExecuteNonQuery();
         }
 
         public Pet GetById(int id)
         {
-            throw new NotImplementedException();
+            using SqliteConnection connection = new SqliteConnection();
+            connection.ConnectionString = _connectionString;
+            connection.Open();
+
+            using SqliteCommand command =
+                new SqliteCommand("SELECT * FROM pets WHERE PetId=@PetId", connection);
+
+            command.Parameters.AddWithValue("@PetId", id);
+            command.Prepare();
+
+            SqliteDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                Pet pet = new()
+                {
+                    PetId = reader.GetInt32(0),
+                    ClientId = reader.GetInt32(1),
+                    Name = reader.GetString(2),
+                    Birthday = reader.GetDateTime(3)
+                };
+            }
+
+            return null!;
         }
 
-        public int Update(Pet item)
+        public int Delete(int id)
         {
-            throw new NotImplementedException();
+            using SqliteConnection connection = new SqliteConnection();
+            connection.ConnectionString = _connectionString;
+            connection.Open();
+
+            using SqliteCommand command =
+                new SqliteCommand("DELETE FROM pets WHERE PetId=@PetId", connection);
+
+            command.Parameters.AddWithValue("@PetId", id);
+            command.Prepare();
+
+            return command.ExecuteNonQuery();
+        }
+
+        public IList<Pet> GetAll()
+        {
+            List<Pet> list = [];
+
+            using SqliteConnection connection = new SqliteConnection();
+            connection.ConnectionString = _connectionString;
+            connection.Open();
+
+            using SqliteCommand command =
+                new SqliteCommand("SELECT * FROM pets", connection);
+            command.Prepare();
+
+            using SqliteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Pet pet = new()
+                {
+                    PetId = reader.GetInt32(0),
+                    ClientId = reader.GetInt32(1),
+                    Name = reader.GetString(2),
+                    Birthday = reader.GetDateTime(3)
+                };
+
+                list.Add(pet);
+            }
+            return list;
         }
     }
 }
