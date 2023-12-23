@@ -1,5 +1,7 @@
 ﻿using ClinicService.Models;
+using ClinicService.Models.Requests;
 using ClinicService.Services;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClinicService.Controllers
@@ -16,15 +18,17 @@ namespace ClinicService.Controllers
         }
 
         [HttpPost("create")]
-        public IActionResult Create([FromBody] Pet createRequest)
+        public IActionResult Create([FromBody] CreatePetRequest createRequest)
         {
-            return Ok(_petRepository.Create(createRequest));
+            var item = createRequest.Adapt<Pet>();
+            return base.Ok(_petRepository.Create(item));
         }
 
         [HttpPut("edit")]
         public IActionResult Update([FromBody] Pet updateRequest)
         {
-            return Ok(_petRepository.Update(updateRequest));
+            var item = updateRequest.Adapt<Pet>();
+            return base.Ok(_petRepository.Update(item));
         }
 
 

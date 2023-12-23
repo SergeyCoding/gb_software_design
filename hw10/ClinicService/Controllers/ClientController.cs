@@ -10,7 +10,7 @@ namespace ClinicService.Controllers
     public class ClientController : ControllerBase
     {
 
-        private IClientRepository _clientRepository;
+        private readonly IClientRepository _clientRepository;
 
         public ClientController(IClientRepository clientRepository)
         {
@@ -21,10 +21,10 @@ namespace ClinicService.Controllers
         public IActionResult Create([FromBody] CreateClientRequest createRequest)
         {
             Client client = new Client();
-            client.Document = createRequest.Document;
-            client.SurName = createRequest.SurName;
-            client.FirstName = createRequest.FirstName;
-            client.Patronymic = createRequest.Patronymic;
+            client.Document = createRequest.Document!;
+            client.SurName = createRequest.SurName!;
+            client.FirstName = createRequest.FirstName!;
+            client.Patronymic = createRequest.Patronymic!;
             client.Birthday = createRequest.Birthday;
             return Ok(_clientRepository.Create(client));
         }

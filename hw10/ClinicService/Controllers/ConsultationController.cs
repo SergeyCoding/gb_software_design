@@ -1,5 +1,7 @@
 ﻿using ClinicService.Models;
+using ClinicService.Models.Requests;
 using ClinicService.Services;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClinicService.Controllers
@@ -16,15 +18,17 @@ namespace ClinicService.Controllers
         }
 
         [HttpPost("create")]
-        public IActionResult Create([FromBody] Consultation consultation)
+        public IActionResult Create([FromBody] CreateConsultationRequest consultationRequest)
         {
+            var consultation = consultationRequest.Adapt<Consultation>();
             return Ok(_consultationRepository.Create(consultation));
         }
 
         [HttpPut("edit")]
-        public IActionResult Update([FromBody] Consultation updateRequest)
+        public IActionResult Update([FromBody] UpdateConsultationRequest updateRequest)
         {
-            return Ok(_consultationRepository.Update(updateRequest));
+            var consultation = updateRequest.Adapt<Consultation>();
+            return base.Ok(_consultationRepository.Update(consultation));
         }
 
 
