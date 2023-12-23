@@ -1,8 +1,8 @@
-﻿namespace ClinicService.Models
+﻿namespace ClinicService.Models.Requests
 {
-    public class Pet
+    public class CreatePetRequest
     {
-        public int PetId { get; set; }
+        //public int PetId { get; set; }
 
         public int ClientId { get; set; }
 

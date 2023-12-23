@@ -1,11 +1,10 @@
-﻿namespace ClinicService.Models
+﻿namespace ClinicService.Models.Requests
 {
-    public class Consultation
+    public class CreateConsultationRequest
     {
-        public int ConsultationId { get; set; }
+        //public int ConsultationId { get; set; }
 
         public int ClientId { get; set; }
-
 
         public int PetId { get; set; }
 

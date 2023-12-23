@@ -5,13 +5,16 @@ namespace ClinicService.Services.Impl
 {
     public class ClientRepository : IClientRepository
     {
-        private const string connectionString = "Data Source = clinic.db;";
+        private readonly string _connectionString;
 
-
+        public ClientRepository(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("db")!;
+        }
         public int Create(Client item)
         {
             using SqliteConnection connection = new SqliteConnection();
-            connection.ConnectionString = connectionString;
+            connection.ConnectionString = _connectionString;
             connection.Open();
 
             using SqliteCommand command =
@@ -28,7 +31,7 @@ namespace ClinicService.Services.Impl
         public int Update(Client item)
         {
             using SqliteConnection connection = new SqliteConnection();
-            connection.ConnectionString = connectionString;
+            connection.ConnectionString = _connectionString;
             connection.Open();
             using SqliteCommand command =
                 new SqliteCommand("UPDATE clients SET Document = @Document, FirstName = @FirstName, SurName = @SurName, Patronymic = @Patronymic, Birthday = @Birthday WHERE ClientId=@ClientId", connection);
@@ -44,9 +47,9 @@ namespace ClinicService.Services.Impl
 
         public IList<Client> GetAll()
         {
-            List<Client> list = new List<Client>();
+            List<Client> list = [];
             using SqliteConnection connection = new SqliteConnection();
-            connection.ConnectionString = connectionString;
+            connection.ConnectionString = _connectionString;
             connection.Open();
             using SqliteCommand command =
                 new SqliteCommand("SELECT * FROM clients", connection);
@@ -69,7 +72,7 @@ namespace ClinicService.Services.Impl
         public Client GetById(int id)
         {
             using SqliteConnection connection = new SqliteConnection();
-            connection.ConnectionString = connectionString;
+            connection.ConnectionString = _connectionString;
             connection.Open();
             using SqliteCommand command =
                 new SqliteCommand("SELECT * FROM clients WHERE ClientId=@ClientId", connection);
@@ -87,13 +90,13 @@ namespace ClinicService.Services.Impl
                 client.Birthday = new DateTime(reader.GetInt64(5));
                 return client;
             }
-            return null;
+            return null!;
         }
 
         public int Delete(int id)
         {
             using SqliteConnection connection = new SqliteConnection();
-            connection.ConnectionString = connectionString;
+            connection.ConnectionString = _connectionString;
             connection.Open();
             using SqliteCommand command =
                 new SqliteCommand("DELETE FROM clients WHERE ClientId=@ClientId", connection);
@@ -101,6 +104,6 @@ namespace ClinicService.Services.Impl
             command.Prepare();
             return command.ExecuteNonQuery();
         }
-        
+
     }
 }

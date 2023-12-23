@@ -1,6 +1,7 @@
-﻿namespace ClinicService.Models
+﻿namespace ClinicService.Models.Requests
 {
-    public class Pet
+
+    public class UpdatePetRequest
     {
         public int PetId { get; set; }
 

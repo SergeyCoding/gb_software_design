@@ -2,6 +2,7 @@
 using ClinicService.Services;
 using ClinicService.Services.Impl;
 using Microsoft.Data.Sqlite;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ClinicService
 {
@@ -21,6 +22,8 @@ namespace ClinicService
 
             builder.Services.AddControllers();
             builder.Services.AddScoped<IClientRepository, ClientRepository>();
+            builder.Services.AddScoped<IConsultationRepository, ConsultationRepository>();
+            builder.Services.AddScoped<IPetRepository, PetRepository>();
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -44,13 +47,14 @@ namespace ClinicService
             app.Run();
         }
 
+        [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members")]
         private static void ConfigureSqlLiteConnection()
         {
             string connectionString = "Data Source = clinic.db;";
             SqliteConnection sqliteConnection = new SqliteConnection(connectionString);
             sqliteConnection.Open();
             PrepareSchema(sqliteConnection);
-            sqliteConnection.Close();   
+            sqliteConnection.Close();
         }
 
         private static void PrepareSchema(SqliteConnection sqliteConnection)
