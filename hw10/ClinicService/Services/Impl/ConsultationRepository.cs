@@ -1,6 +1,8 @@
 ﻿using ClinicService.Models;
 using Dapper;
 using Microsoft.Data.Sqlite;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace ClinicService.Services.Impl
@@ -8,65 +10,55 @@ namespace ClinicService.Services.Impl
     public class ConsultationRepository : IConsultationRepository
     {
         private readonly string _connectionString;
+        private readonly Assembly _assembly;
+        private readonly string _ns;
 
         public ConsultationRepository(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("db")!;
+            _assembly = GetType().Assembly;
+            _ns = GetType().Namespace!;
         }
 
         public int Create(Consultation item)
         {
             using var connection = new SqliteConnection(_connectionString);
-
-            var sql = "INSERT INTO consultations(ClientId,PetId,ConsultationDate,Description)"
-                + " VALUES(@ClientId,@PetId,@ConsultationDate,@Description)";
-
+            var sql = GetSql();
             return connection.Execute(sql, item);
         }
 
         public int Update(Consultation item)
         {
             using var connection = new SqliteConnection(_connectionString);
-
-            var sql = "UPDATE consultations " +
-                "SET ClientId=@ClientId, PetId=@PetId, ConsultationDate=@ConsultationDate, Description=@Description " +
-                "where ConsultationId=@ConsultationId";
-
+            var sql = GetSql();
             return connection.Execute(sql, item);
         }
 
         public int Delete(int id)
         {
             using var connection = new SqliteConnection(_connectionString);
-
-            var sql = "DELETE FROM consultations WHERE ConsultationId=@ConsultationId ";
-
+            var sql = GetSql();
             return connection.Execute(sql, new { ConsultationId = id });
         }
 
         public IList<Consultation> GetAll()
         {
             using var connection = new SqliteConnection(_connectionString);
-
-            var sql = "select * from consultations";
-
+            var sql = GetSql();
             return connection.Query<Consultation>(sql).ToArray();
         }
 
         public Consultation GetById(int id)
         {
-
             using var connection = new SqliteConnection(_connectionString);
-
-            var sql = GetSql("select.sql");// "select * from consultations where ConsultationId=@ConsultationId";
-
+            var sql = GetSql();
             return connection.QuerySingle<Consultation>(sql, new { ConsultationId = id });
         }
 
-        private string GetSql(string sqlName)
+
+        private string GetSql([CallerMemberName] string sqlName = "")
         {
-            var ns = GetType().Namespace;
-            var stream = GetType().Assembly.GetManifestResourceStream($"{ns}.{nameof(ConsultationRepository)}.{sqlName}")!;
+            var stream = _assembly.GetManifestResourceStream($"{_ns}.{nameof(ConsultationRepository)}.{sqlName}.sql")!;
             var streamReader = new StreamReader(stream, Encoding.UTF8);
             return streamReader.ReadToEnd();
         }

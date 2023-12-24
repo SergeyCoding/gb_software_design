@@ -8,15 +8,16 @@
     <None Remove="Services\Impl\1.sql" />
     <None Remove="Services\Impl\2.sql" />
     <None Remove="Services\Impl\ConsultationRepository\delete.sql" />
-    <None Remove="Services\Impl\ConsultationRepository\select.sql" />
+    <None Remove="Services\Impl\ConsultationRepository\GetAll.sql" />
+    <None Remove="Services\Impl\ConsultationRepository\GetById.sql" />
     <None Remove="Services\Impl\ConsultationRepository\update.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Services\Impl\ConsultationRepository\insert.sql" />
     <EmbeddedResource Include="Services\Impl\ConsultationRepository\delete.sql" />
+    <EmbeddedResource Include="Services\Impl\ConsultationRepository\GetById.sql" />
     <EmbeddedResource Include="Services\Impl\ConsultationRepository\update.sql" />
-    <EmbeddedResource Include="Services\Impl\ConsultationRepository\select.sql" />
-    <EmbeddedResource Include="Services\Impl\ConsultationRepository\selectall.sql" />
+    <EmbeddedResource Include="Services\Impl\ConsultationRepository\GetAll.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />

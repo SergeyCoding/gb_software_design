@@ -1,2 +1,3 @@
-﻿delete from consultations
-where ConsultationsId=@ConsultationsId
+﻿DELETE
+FROM consultations
+WHERE ConsultationsId = @ConsultationsId
