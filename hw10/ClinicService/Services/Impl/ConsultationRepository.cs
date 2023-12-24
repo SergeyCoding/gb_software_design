@@ -38,7 +38,7 @@ namespace ClinicService.Services.Impl
         {
             using var connection = new SqliteConnection(_connectionString);
 
-            var sql = "select * from consultations";
+            var sql = "DELETE FROM consultations WHERE ConsultationId=@ConsultationId ";
 
             return connection.Execute(sql, new { ConsultationId = id });
         }
