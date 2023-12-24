@@ -14,6 +14,27 @@ namespace ClinicService
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
+            //{
+            //    var names = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+
+            //    foreach (var name in names)
+            //    {
+            //        Console.WriteLine(name);
+
+            //        var info = Assembly.GetExecutingAssembly().GetName();
+            //        //var name = info.Name;
+            //        using var stream = Assembly
+            //            .GetExecutingAssembly()
+            //            .GetManifestResourceStream(name)!;
+            //        using var streamReader = new StreamReader(stream, Encoding.UTF8);
+            //        var z = streamReader.ReadToEnd();
+            //        Console.WriteLine(z);
+            //        Console.WriteLine();
+            //    }
+            //}
+
+
+
             //ConfigureSqlLiteConnection();
             var builder = WebApplication.CreateBuilder(args);
 

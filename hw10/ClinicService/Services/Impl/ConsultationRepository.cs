@@ -1,6 +1,7 @@
 ﻿using ClinicService.Models;
 using Dapper;
 using Microsoft.Data.Sqlite;
+using System.Text;
 
 namespace ClinicService.Services.Impl
 {
@@ -54,11 +55,20 @@ namespace ClinicService.Services.Impl
 
         public Consultation GetById(int id)
         {
+
             using var connection = new SqliteConnection(_connectionString);
 
-            var sql = "select * from consultations where ConsultationId=@ConsultationId";
+            var sql = GetSql("select.sql");// "select * from consultations where ConsultationId=@ConsultationId";
 
             return connection.QuerySingle<Consultation>(sql, new { ConsultationId = id });
+        }
+
+        private string GetSql(string sqlName)
+        {
+            var ns = GetType().Namespace;
+            var stream = GetType().Assembly.GetManifestResourceStream($"{ns}.{nameof(ConsultationRepository)}.{sqlName}")!;
+            var streamReader = new StreamReader(stream, Encoding.UTF8);
+            return streamReader.ReadToEnd();
         }
     }
 }
