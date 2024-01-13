@@ -4,11 +4,6 @@ using ClinicService.Models.Requests;
 using ClinicService.Services;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClinicService.Tests
 {
@@ -19,7 +14,7 @@ namespace ClinicService.Tests
 
         public ClientControllerTests()
         {
-           _mockClientRepository = new Mock<IClientRepository>();
+            _mockClientRepository = new Mock<IClientRepository>();
             _clientController = new ClientController(_mockClientRepository.Object);
         }
 
