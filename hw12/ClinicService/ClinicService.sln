@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
@@ -9,9 +8,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClinicConsole", "ClinicCons
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClinicService.Data", "ClinicService.Data\ClinicService.Data.csproj", "{F5A24E53-1DF8-4FF7-BBC8-1D339FF2CFDB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClinicDesctop", "ClinicDesctop\ClinicDesctop.csproj", "{7348720E-C70D-4CFC-B8F0-81990FD620E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClinicDesktop", "ClinicDesctop\ClinicDesktop.csproj", "{7348720E-C70D-4CFC-B8F0-81990FD620E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicService.Tests", "ClinicService.Tests\ClinicService.Tests.csproj", "{81E0E562-ED96-4C43-B26E-A0C3DCAA99BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClinicService.Tests", "ClinicService.Tests\ClinicService.Tests.csproj", "{81E0E562-ED96-4C43-B26E-A0C3DCAA99BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
