@@ -1,8 +1,6 @@
-﻿using ClinicService.Models.Requests;
-using ClinicService.Models;
+﻿using ClinicService.Models;
+using ClinicService.Models.Requests;
 using ClinicService.Services;
-using ClinicService.Services.Impl;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClinicService.Controllers
@@ -34,7 +32,7 @@ namespace ClinicService.Controllers
                     ErrCode = -11,
                     ErrMessage = "Имя указано некорректно."
                 });
-            if(string.IsNullOrEmpty(createRequest.Patronymic))
+            if (string.IsNullOrEmpty(createRequest.Patronymic))
                 return Ok(new
                 {
                     ErrCode = -12,

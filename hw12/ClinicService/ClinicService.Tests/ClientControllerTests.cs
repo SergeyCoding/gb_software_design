@@ -4,11 +4,6 @@ using ClinicService.Models.Requests;
 using ClinicService.Services;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClinicService.Tests
 {
@@ -19,7 +14,7 @@ namespace ClinicService.Tests
 
         public ClientControllerTests()
         {
-           _mockClientRepository = new Mock<IClientRepository>();
+            _mockClientRepository = new Mock<IClientRepository>();
             _clientController = new ClientController(_mockClientRepository.Object);
         }
 
@@ -59,7 +54,7 @@ namespace ClinicService.Tests
             new object[] { new DateTime(1986, 1, 22), "AA1 B11222", "Иванов1", "Станислав1", "Андреевич1" },
             new object[] { new DateTime(1986, 1, 22), "AA1 B11222", "Иванов2", "Станислав2", "Андреевич2" },
             //new object[] { new DateTime(2013, 1, 22), "AA1 B11222", "Иванов3", "Станислав3", "Андреевич3" },
-            new object[] { new DateTime(2018, 1, 22), "AA1 B11222", "Иванов4", "Станислав4", "Андреевич4" },
+            new object[] { new DateTime(1980, 1, 22), "AA1 B11222", "Иванов4", "Станислав4", "Андреевич4" },
             new object[] { new DateTime(1986, 1, 22), "AA1 B11222", "Иванов5", "Станислав5", "Андреевич5" },
             //new object[] { new DateTime(1986, 1, 22), "AA1 B11222", "Иванов", "", "Андреевич" },
             new object[] { new DateTime(1986, 1, 22), "AA1 B11222", "Иванов6", "Станислав6", "Андреевич6" },
