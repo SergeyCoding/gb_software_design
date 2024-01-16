@@ -1,6 +1,4 @@
 ﻿using ClinicService.Controllers;
-using ClinicService.Models;
-using ClinicService.Models.Requests;
 using ClinicService.Services;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
